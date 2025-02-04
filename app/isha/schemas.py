@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 
 from app.utils import Language, Philosophy
+from typing import Optional
 
 
 class SutraBase(BaseModel):
@@ -86,3 +87,24 @@ class Result(BaseModel):
     sutra_no: int
     mode: str | None
     lang: str | None
+
+
+
+# Base model for common fields
+class BhashyamBase(BaseModel):
+    language: Language
+    text: str
+    philosophy: Philosophy
+
+class BhashyamCreate(BhashyamBase):
+    sutra_id: int = None  # Optional since the sutra_no in the path is used.
+
+class BhashyamUpdate(BaseModel):
+    text: str = None
+    philosophy: Philosophy = None
+
+class BhashyamOut(BhashyamBase):
+    sutra_id: int
+
+    class Config:
+        orm_mode = True

@@ -28,7 +28,7 @@ def get_interpretation_or_404(
         not_found_error_response()
 
     return db_interpretation
-
+2
 
 @router.get("/{sutra_no}/interpretation", response_model=schemas.InterpretationOut)
 def get_interpretation(
